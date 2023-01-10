@@ -10,7 +10,7 @@
   "headline": "Posts",
   
   "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "2022-12-16T01:06:15+08:00",
+  "dateModified": "2023-01-10T16:03:57+08:00",
   "author": {
     "@type": "Person",
     "name": "羽 Yu",
@@ -249,6 +249,70 @@
     <div class="postShorten-header">
       <h1 class="postShorten-title">
       
+        <a class="link-unstyled" href="https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" aria-label="打開帖子: LineBot 使用心得">
+      
+          LineBot 使用心得
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-01-10T16:03:57&#43;08:00">
+        
+  一月 10, 2023
+
+      </time>
+    
+    
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt">
+      
+        使用LineBot後的心得分享 大家好啊！
+今天要跟大家分享一些LineBot的使用心得 是說為什麼會突然接觸LineBot呢？ 故事要從一個寒冷的冬天說起&hellip;&hellip; 大三的上學期 我選了一堂台大的 python 應用課程 那時認識了兩個新同學一起組隊 其中有一個護理系的組員提出希望做一個可以幫忙挑選專輯的程式
+故事太長了&hellip;&hellip; 結局就是我們寫完後還有一些時間 然後我就想說來試看看用LineBot包裝他好了 然後就接觸LineBot了🎃 好！故事說完了 接下來分享一些學到的東西！
+🍀 LineBot 使用手冊 這邊會從零開使分享如何架設並部署一個LineBot
+後面會簡單介紹一些官方的 API 開始吧!
+第一步：到LineDeveloper申請 到LineDeveloper官網
+申請一隻帳號（或用自己line帳號也可以） 然後申請一隻機器人 詳細可以參考: 這篇文章
+第二步：架設 Django 當然也可以用其他框架來架設 不過因為是python的專案 所以這邊選擇使用Django
+$ pip install django $ pip install line-bot-sdk 安裝上面這兩個套件 之後就可以建立Django
+$ django-admin startproject mylinebot . $ python manage.py startapp albumlinebot $ python manage.py migrate ❗️這邊要注意幾點：
+第一個指令是建立一整個Django 第二個指令是建立這個Django內的應用程式 也就是說他是建立一個albumlinebot這個應用程式在mylinebot內 第三個指令是執行資料遷移 第三步：連結應用程式（albumlinebot）和主專案程式(mylinebot) 開啟mylineboty資料夾底下的settings.py
+在INSTALL_APPS的地方 加上剛剛所建立的應用程式: albumlinebot
+# Application definition INSTALLED_APPS = [ &#39;django.
+      
+      <p>
+        
+          <a href="https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="postShorten-excerpt_link link" aria-label="打開帖子: LineBot 使用心得">繼續閱讀</a>
+        
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title">
+      
         <a class="link-unstyled" href="https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/" aria-label="打開帖子: My first post - 新朋友 Hugo">
       
           My first post - 新朋友 Hugo
@@ -299,7 +363,7 @@
         </section>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2022 羽 Yu. All Rights Reserved
+    &copy; 2023 羽 Yu. All Rights Reserved
   </span>
 </footer>
 

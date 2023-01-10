@@ -2,12 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2023-01-10T16:03:57+08:00</lastmod>
+  </url><url>
+    <loc>https://Owen5254.github.io/posts/</loc>
+    <lastmod>2023-01-10T16:03:57+08:00</lastmod>
+  </url><url>
+    <loc>https://Owen5254.github.io/</loc>
+    <lastmod>2023-01-10T16:03:57+08:00</lastmod>
+  </url><url>
+    <loc>https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/</loc>
+    <lastmod>2022-12-16T01:06:15+08:00</lastmod>
+  </url><url>
     <loc>https://Owen5254.github.io/archives/</loc>
   </url><url>
     <loc>https://Owen5254.github.io/categories/</loc>
   </url><url>
     <loc>https://Owen5254.github.io/tags/</loc>
-  </url><url>
-    <loc>https://Owen5254.github.io/</loc>
   </url>
 </urlset>
