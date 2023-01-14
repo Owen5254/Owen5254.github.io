@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Rails on Yu 的 Blog</title>
+    <link>https://Owen5254.github.io/tags/ruby-on-rails/</link>
+    <description>Recent content in Ruby on Rails on Yu 的 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 14 Jan 2023 15:08:28 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/ruby-on-rails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ruby手冊 第一章</title>
+      <link>https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
+      <pubDate>Sat, 14 Jan 2023 15:08:28 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/</guid>
+      <description>♦️ Ruby手冊 第一章 這篇文章中會著重介紹一些Ruby和其他語言的基礎差異 有興趣的話歡迎閱讀喔！
+☘️ 變數（variable) 常數（Constant） 種類 範例 預設值 區域變數 （local variable） name 沒有 全域變數 （global variable) $name nil 實體變數 （instance variable） @name nil 類別變數 （class variable） @@name 沒有 ⭐️ 實體變數(@): 實體變數只能在類別內部訪問，如果要在外部訪問，需要定義讀寫方法 類別外部存取一個實體變數，可以定義讀寫方法，例如 attr_accessor
+☘️判斷： # if if a &amp;gt; b: puts &amp;#39;a&amp;gt;b&amp;#39; elsif a = b: puts &amp;#39;a=b&amp;#39; else puts &amp;#39;a&amp;lt;b&amp;#39; end # unless unless is_adult?(20) puts &amp;#34;你是大人了&amp;#34; end # 相當於 if not if not is_adult?(20) puts &amp;#34;你是大人了&amp;#34; end # case weather = &amp;#34;下雨&amp;#34; case weather when &amp;#34;下雨&amp;#34; puts &amp;#34;待在家!</description>
+    </item>
+    
+    <item>
+      <title>Rails寶典 第一章</title>
+      <link>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
+      <pubDate>Thu, 12 Jan 2023 17:09:21 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</guid>
+      <description>🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
+Model 跟 Model 相關的檔案都放在 app/models 目錄裡
+View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡</description>
+    </item>
+    
+  </channel>
+</rss>

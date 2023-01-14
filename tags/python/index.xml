@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Yu 的 Blog</title>
+    <link>https://Owen5254.github.io/tags/python/</link>
+    <description>Recent content in python on Yu 的 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 10 Jan 2023 16:03:57 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LineBot 使用心得</title>
+      <link>https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
+      <pubDate>Tue, 10 Jan 2023 16:03:57 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+      <description>使用LineBot後的心得分享 大家好啊！
+今天要跟大家分享一些LineBot的使用心得 是說為什麼會突然接觸LineBot呢？ 故事要從一個寒冷的冬天說起&amp;hellip;&amp;hellip; 大三的上學期 我選了一堂台大的 python 應用課程 那時認識了兩個新同學一起組隊 其中有一個護理系的組員提出希望做一個可以幫忙挑選專輯的程式
+故事太長了&amp;hellip;&amp;hellip; 結局就是我們寫完後還有一些時間 然後我就想說來試看看用LineBot包裝他好了 然後就接觸LineBot了🎃 好！故事說完了 接下來分享一些學到的東西！
+🍀 LineBot 使用手冊 這邊會從零開使分享如何架設並部署一個LineBot
+後面會簡單介紹一些官方的 API 開始吧!
+第一步：到LineDeveloper申請 到LineDeveloper官網
+申請一隻帳號（或用自己line帳號也可以） 然後申請一隻機器人 詳細可以參考: 這篇文章
+第二步：架設 Django 當然也可以用其他框架來架設 不過因為是python的專案 所以這邊選擇使用Django
+$ pip install django $ pip install line-bot-sdk 安裝上面這兩個套件 之後就可以建立Django
+$ django-admin startproject mylinebot . $ python manage.py startapp albumlinebot $ python manage.py migrate ❗️這邊要注意幾點：
+第一個指令是建立一整個Django 第二個指令是建立這個Django內的應用程式 也就是說他是建立一個albumlinebot這個應用程式在mylinebot內 第三個指令是執行資料遷移 第三步：連結應用程式（albumlinebot）和主專案程式(mylinebot) 開啟mylineboty資料夾底下的settings.py
+在INSTALL_APPS的地方 加上剛剛所建立的應用程式: albumlinebot
+# Application definition INSTALLED_APPS = [ &amp;#39;django.</description>
+    </item>
+    
+  </channel>
+</rss>

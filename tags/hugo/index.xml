@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Yu 的 Blog</title>
+    <link>https://Owen5254.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on Yu 的 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Fri, 16 Dec 2022 01:06:15 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My first post - 新朋友 Hugo</title>
+      <link>https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/</link>
+      <pubDate>Fri, 16 Dec 2022 01:06:15 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/</guid>
+      <description>使用 Hugo 快速打造出自己的部落格 大家好啊！！ 這是我在部落格發的第一篇文章 我決定要來介紹介紹 Hugo
+也就是幫我打造出這個部落格的東東 在進入正文前先來分享心得
+✨ 心得的部分 ✨ 真的太開心啦 我終於也能打造出一個屬於自己的部落格啦！🥳
+多虧 Hugo 的幫助
+一開始因為在學 Ruby on Rails 的緣故 本來想直接用 Rails 打造出來
+而且前端也想自己刻出來 阿不過寫到一半就放棄了 寫部落格用 Rails 真的太大材小用了 😞
+而且我那時候甚至連文章可以用mk寫都不知道 &amp;hellip;&amp;hellip;
+不過後來懂了動態網頁和靜態網頁的區別後 我找到了 Hugo 然後看起來很順利的打造出這個部落格了！
+對 大概整個心路歷程就是這樣 後面直接進入正題 ！
+🍀 Hugo 使用手冊 這邊會簡單介紹如何使用 Hugo
+詳請的話可以參考官網 Hugo
+安裝 ( macOS or Linux )： brew install hugo 初始化 hugo new site quickstart cd quickstart git init hugo server # 開啟 server # hugo server -D 可以開啟沙盒 server 好了之後能在本地上就能看到server運行結果了 接著就是關於主題還有內文</description>
+    </item>
+    
+  </channel>
+</rss>

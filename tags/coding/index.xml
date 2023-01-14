@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>coding on Yu 的 Blog</title>
+    <link>https://Owen5254.github.io/tags/coding/</link>
+    <description>Recent content in coding on Yu 的 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 14 Jan 2023 15:08:28 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ruby手冊 第一章</title>
+      <link>https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
+      <pubDate>Sat, 14 Jan 2023 15:08:28 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/</guid>
+      <description>♦️ Ruby手冊 第一章 這篇文章中會著重介紹一些Ruby和其他語言的基礎差異 有興趣的話歡迎閱讀喔！
+☘️ 變數（variable) 常數（Constant） 種類 範例 預設值 區域變數 （local variable） name 沒有 全域變數 （global variable) $name nil 實體變數 （instance variable） @name nil 類別變數 （class variable） @@name 沒有 ⭐️ 實體變數(@): 實體變數只能在類別內部訪問，如果要在外部訪問，需要定義讀寫方法 類別外部存取一個實體變數，可以定義讀寫方法，例如 attr_accessor
+☘️判斷： # if if a &amp;gt; b: puts &amp;#39;a&amp;gt;b&amp;#39; elsif a = b: puts &amp;#39;a=b&amp;#39; else puts &amp;#39;a&amp;lt;b&amp;#39; end # unless unless is_adult?(20) puts &amp;#34;你是大人了&amp;#34; end # 相當於 if not if not is_adult?(20) puts &amp;#34;你是大人了&amp;#34; end # case weather = &amp;#34;下雨&amp;#34; case weather when &amp;#34;下雨&amp;#34; puts &amp;#34;待在家!</description>
+    </item>
+    
+    <item>
+      <title>Rails寶典 第一章</title>
+      <link>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
+      <pubDate>Thu, 12 Jan 2023 17:09:21 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</guid>
+      <description>🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
+Model 跟 Model 相關的檔案都放在 app/models 目錄裡
+View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡</description>
+    </item>
+    
+    <item>
+      <title>LineBot 使用心得</title>
+      <link>https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</link>
+      <pubDate>Tue, 10 Jan 2023 16:03:57 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/01/linebot-%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</guid>
+      <description>使用LineBot後的心得分享 大家好啊！
+今天要跟大家分享一些LineBot的使用心得 是說為什麼會突然接觸LineBot呢？ 故事要從一個寒冷的冬天說起&amp;hellip;&amp;hellip; 大三的上學期 我選了一堂台大的 python 應用課程 那時認識了兩個新同學一起組隊 其中有一個護理系的組員提出希望做一個可以幫忙挑選專輯的程式
+故事太長了&amp;hellip;&amp;hellip; 結局就是我們寫完後還有一些時間 然後我就想說來試看看用LineBot包裝他好了 然後就接觸LineBot了🎃 好！故事說完了 接下來分享一些學到的東西！
+🍀 LineBot 使用手冊 這邊會從零開使分享如何架設並部署一個LineBot
+後面會簡單介紹一些官方的 API 開始吧!
+第一步：到LineDeveloper申請 到LineDeveloper官網
+申請一隻帳號（或用自己line帳號也可以） 然後申請一隻機器人 詳細可以參考: 這篇文章
+第二步：架設 Django 當然也可以用其他框架來架設 不過因為是python的專案 所以這邊選擇使用Django
+$ pip install django $ pip install line-bot-sdk 安裝上面這兩個套件 之後就可以建立Django
+$ django-admin startproject mylinebot . $ python manage.py startapp albumlinebot $ python manage.py migrate ❗️這邊要注意幾點：
+第一個指令是建立一整個Django 第二個指令是建立這個Django內的應用程式 也就是說他是建立一個albumlinebot這個應用程式在mylinebot內 第三個指令是執行資料遷移 第三步：連結應用程式（albumlinebot）和主專案程式(mylinebot) 開啟mylineboty資料夾底下的settings.py
+在INSTALL_APPS的地方 加上剛剛所建立的應用程式: albumlinebot
+# Application definition INSTALLED_APPS = [ &amp;#39;django.</description>
+    </item>
+    
+    <item>
+      <title>My first post - 新朋友 Hugo</title>
+      <link>https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/</link>
+      <pubDate>Fri, 16 Dec 2022 01:06:15 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2022/12/my-first-post-%E6%96%B0%E6%9C%8B%E5%8F%8B-hugo/</guid>
+      <description>使用 Hugo 快速打造出自己的部落格 大家好啊！！ 這是我在部落格發的第一篇文章 我決定要來介紹介紹 Hugo
+也就是幫我打造出這個部落格的東東 在進入正文前先來分享心得
+✨ 心得的部分 ✨ 真的太開心啦 我終於也能打造出一個屬於自己的部落格啦！🥳
+多虧 Hugo 的幫助
+一開始因為在學 Ruby on Rails 的緣故 本來想直接用 Rails 打造出來
+而且前端也想自己刻出來 阿不過寫到一半就放棄了 寫部落格用 Rails 真的太大材小用了 😞
+而且我那時候甚至連文章可以用mk寫都不知道 &amp;hellip;&amp;hellip;
+不過後來懂了動態網頁和靜態網頁的區別後 我找到了 Hugo 然後看起來很順利的打造出這個部落格了！
+對 大概整個心路歷程就是這樣 後面直接進入正題 ！
+🍀 Hugo 使用手冊 這邊會簡單介紹如何使用 Hugo
+詳請的話可以參考官網 Hugo
+安裝 ( macOS or Linux )： brew install hugo 初始化 hugo new site quickstart cd quickstart git init hugo server # 開啟 server # hugo server -D 可以開啟沙盒 server 好了之後能在本地上就能看到server運行結果了 接著就是關於主題還有內文</description>
+    </item>
+    
+  </channel>
+</rss>
