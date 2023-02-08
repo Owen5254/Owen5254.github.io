@@ -6,7 +6,22 @@
     <description>Recent content in coding on Yu 的 Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 14 Jan 2023 15:08:28 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Feb 2023 02:16:21 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rails寶典 第二章</title>
+      <link>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</link>
+      <pubDate>Wed, 08 Feb 2023 02:16:21 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</guid>
+      <description>♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
+那我們就開始啦! GoGo!
+✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
+REST有主要有兩個核心精神：
+使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。
+🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions
+Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經</description>
+    </item>
+    
     <item>
       <title>Ruby手冊 第一章</title>
       <link>https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
