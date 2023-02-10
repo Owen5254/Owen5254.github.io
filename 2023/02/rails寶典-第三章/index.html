@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境\n那事不宜遲 GoGo !\n✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key\nprimary_key and foreign_key\nprimary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key\nforeign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key\n關聯的型別： Rails models 有六種型別的關聯:\nbelongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.",
+  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境\n那事不宜遲 GoGo !\n✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key\nprimary_key and foreign_key\nprimary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key\nforeign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key\n關聯的型別： Rails models 有六種型別的關聯:\nbelongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.",
   "keywords": []
 }
 
@@ -48,7 +48,7 @@
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
-foreign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
+foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
 belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
 
@@ -58,7 +58,7 @@ belongs_to has_one has_many has_many :through has_one :through has_and_belongs_t
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
-foreign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
+foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
 belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
 <meta property="og:type" content="article">
@@ -72,7 +72,7 @@ belongs_to has_one has_many has_many :through has_one :through has_and_belongs_t
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
-foreign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
+foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
 belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
 <meta name="twitter:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
@@ -80,7 +80,7 @@ belongs_to has_one has_many has_many :through has_one :through has_and_belongs_t
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
-foreign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
+foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
 belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
 <meta property="og:locale" content="zh-tw">
@@ -318,7 +318,7 @@ primary_key and foreign_key</p>
 並用 id 號碼作為 primary key</p>
 <h5 id="foreign-key">foreign key:</h5>
 <p>foreign key 是用來做不同表格之間的關聯   <br>
-舉例來說 A表紀錄
+<strong>Rails的慣例是「要被對到的那個 Model 的名字」加上 _id</strong>
 在一張表格中 可以跟很多表格有關聯性的欄位   <br>
 因此很常 foreign key 不只有一個  <br>
 當然也不一定要是 primary key</p>
@@ -371,9 +371,153 @@ primary_key and foreign_key</p>
 </span></span></code></pre></div><h5 id="5-has_one-through-">5. has_one :through :</h5>
 <p>跟has_many :through 是差不多的 <br>
 只是這邊換成has_one<br>
-舉例子 每個供應商都有一個帳戶 每個帳戶與一個帳戶歷史記錄相關聯</p>
+舉例子 每個供應商都有一個帳戶 每個帳戶與一個帳戶歷史記錄相關聯
+<img src="https://guides.rubyonrails.org/images/association_basics/has_one_through.png" alt="image"></p>
 <h5 id="6-has_and_belongs_to_many-">6. has_and_belongs_to_many :</h5>
+<p>has_and_belongs_to_many關聯與另一個模型建立了直接的多對多連線  <br>
+沒有干預模型
+<img src="https://guides.rubyonrails.org/images/association_basics/habtm.png" alt="image"></p>
 <h4 id="-自己關聯自己">⭐️ 自己關聯自己：</h4>
+<p>有一次在我製作專案的時候 <br>
+遇到了這個問題：要怎麼將models關聯自己呢？
+先說說這個專案叫做 whisper 是一個前輩帶我一起做的  <br>
+我們希望他可以像twitter一樣  <br>
+每個tweets下可以再有很多關聯的tweet留言  <br>
+在 whisper中的 buzzs 就是 tweets  <br>
+我們要讓 buzz可以透過 parent_id 這個foreign_key 來關聯自己
+下面是最後成功的程式碼 歡迎參考🥳：</p>
+<p>首先是 model的設定</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># models/buzz.rb</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Buzz</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ApplicationRecord</span>
+</span></span><span style="display:flex;"><span>    belongs_to <span style="color:#e6db74">:user</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    has_many <span style="color:#e6db74">:buzzs</span>, <span style="color:#e6db74">foreign_key</span>: <span style="color:#e6db74">&#34;parent_id&#34;</span> 
+</span></span><span style="display:flex;"><span>    belongs_to <span style="color:#e6db74">:parent</span>, <span style="color:#e6db74">class_name</span>: <span style="color:#e6db74">&#34;Buzz&#34;</span>, <span style="color:#e6db74">optional</span>: <span style="color:#66d9ef">true</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    acts_as_votable
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># db/migrate/_add_parent_to_buzzs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AddParentToBuzzs</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Migration</span><span style="color:#f92672">[</span><span style="color:#ae81ff">7</span><span style="color:#f92672">.</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">change</span>
+</span></span><span style="display:flex;"><span>    add_column <span style="color:#e6db74">:buzzs</span>, <span style="color:#e6db74">:parent_id</span>, <span style="color:#e6db74">:integer</span>, <span style="color:#e6db74">null</span>: <span style="color:#66d9ef">true</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>接著是 view的部分</p>
+<pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# 展示首頁的buzzs(沒有 parent_id 的 buzzs)%&gt;
+&lt;%# 檔案：views/buzzs/index.html.erb %&gt;
+
+&lt;h1&gt;Buzzs&lt;/h1&gt;
+
+&lt;div id=&#34;buzzs&#34;&gt;
+  &lt;% @buzzs.where(parent_id: nil).each do |buzz| %&gt;
+    &lt;%= render buzz %&gt;
+    &lt;p&gt;
+      &lt;%= link_to &#34;Show this buzz&#34;, buzz %&gt;
+    &lt;/p&gt;
+  &lt;% end %&gt;
+&lt;/div&gt;
+
+&lt;%= link_to &#34;New buzz&#34;, new_buzz_path %&gt;
+</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form %&gt;
+&lt;%# 檔案：views/buzzs/show.heml.erb %&gt;
+
+&lt;%= render @buzz %&gt;
+
+&lt;%# render reply buzz %&gt;
+&lt;% @buzz.buzzs.each do |buzz| %&gt;
+  &lt;div class=&#34;sub_buzz&#34;&gt;
+    &lt;%= render buzz %&gt;
+  &lt;/div&gt;
+  &lt;%= link_to &#34;Show this buzz&#34;, buzz %&gt;
+  &lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: buzz.buzzs.build, parent: buzz} %&gt;
+&lt;% end %&gt;
+
+
+&lt;div&gt;
+  &lt;%= link_to &#34;Edit this buzz&#34;, edit_buzz_path(@buzz) %&gt; |
+  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+
+  &lt;%= button_to &#34;Destroy this buzz&#34;, @buzz, method: :delete %&gt;
+&lt;/div&gt;
+
+&lt;%# create form for child buzz %&gt;
+&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz.buzzs.build, parent: @buzz} %&gt;
+</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# views/buzzs/_buzz.html.erb %&gt;
+&lt;div id=&#34;&lt;%= dom_id buzz %&gt;&#34;&gt;
+  &lt;% if buzz.parent_id == nil %&gt;
+    &lt;p&gt;
+      &lt;strong&gt;Content:&lt;/strong&gt;
+      &lt;%= buzz.content %&gt;
+    &lt;/p&gt;
+
+    &lt;%= button_to like_buzz_path(buzz), method: :put do %&gt;
+	    &lt;%= buzz.get_likes.size %&gt;
+    &lt;% end %&gt;
+
+    &lt;%= button_to dislike_buzz_path(buzz), method: :put do %&gt;
+	    &lt;%= buzz.get_dislikes.size %&gt;
+    &lt;% end %&gt;
+  
+  &lt;% else %&gt;
+    &lt;p&gt;
+      &lt;strong&gt;Reply:&lt;/strong&gt;
+      &lt;%= buzz.content %&gt;
+    &lt;/p&gt;
+  &lt;% end %&gt;
+&lt;/div&gt;
+</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/_form.html.erb 用來創建新 buzz的 form --&gt;
+
+&lt;%= form_with(model: buzz) do |form| %&gt;
+  &lt;% if buzz.errors.any? %&gt;
+    &lt;div style=&#34;color: red&#34;&gt;
+      &lt;h2&gt;&lt;%= pluralize(buzz.errors.count, &#34;error&#34;) %&gt; prohibited this buzz from being saved:&lt;/h2&gt;
+
+      &lt;ul&gt;
+        &lt;% buzz.errors.each do |error| %&gt;
+          &lt;li&gt;&lt;%= error.full_message %&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;% end %&gt;
+
+  &lt;div&gt;
+    &lt;%= form.label &#34;content&#34;, style: &#34;display: block&#34; %&gt;
+    &lt;%= form.text_field :content %&gt;
+  &lt;/div&gt;
+  &lt;% if !parent.nil? %&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;buzz[parent_id]&#34; value= &#34;&lt;%= parent.id %&gt;&#34;&gt;
+  &lt;% end %&gt;
+  &lt;div&gt;
+    &lt;%= form.submit &#34;Create&#34;%&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/new.html.erb --&gt;
+
+&lt;h1&gt;New buzz&lt;/h1&gt;
+&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: nil} %&gt;
+&lt;br&gt;
+
+&lt;div&gt;
+  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+&lt;/div&gt;
+</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/edit.html.erb --&gt;
+&lt;h1&gt;Editing buzz&lt;/h1&gt;
+
+&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: @buzz.parent} %&gt;
+
+&lt;br&gt;
+
+&lt;div&gt;
+  &lt;%= link_to &#34;Show this buzz&#34;, @buzz %&gt; |
+  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+&lt;/div&gt;
+</code></pre><hr>
+<p>今天的內容就分享到這邊啦！   <br>
+下一篇文章來介紹簡單的 debug 方法<br>
+還有 rails console 的用法    <br>
+那我們下篇文章見啦！！！</p>
 
               
 

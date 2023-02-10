@@ -33,7 +33,7 @@ Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /event
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
-foreign key: foreign key 是用來做不同表格之間的關聯 舉例來說 A表紀錄 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
+foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
 belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.</description>
     </item>
