@@ -405,115 +405,115 @@ primary_key and foreign_key</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
 </span></span></code></pre></div><p>接著是 view的部分</p>
-<pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# 展示首頁的buzzs(沒有 parent_id 的 buzzs)%&gt;
-&lt;%# 檔案：views/buzzs/index.html.erb %&gt;
-
-&lt;h1&gt;Buzzs&lt;/h1&gt;
-
-&lt;div id=&#34;buzzs&#34;&gt;
-  &lt;% @buzzs.where(parent_id: nil).each do |buzz| %&gt;
-    &lt;%= render buzz %&gt;
-    &lt;p&gt;
-      &lt;%= link_to &#34;Show this buzz&#34;, buzz %&gt;
-    &lt;/p&gt;
-  &lt;% end %&gt;
-&lt;/div&gt;
-
-&lt;%= link_to &#34;New buzz&#34;, new_buzz_path %&gt;
-</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form %&gt;
-&lt;%# 檔案：views/buzzs/show.heml.erb %&gt;
-
-&lt;%= render @buzz %&gt;
-
-&lt;%# render reply buzz %&gt;
-&lt;% @buzz.buzzs.each do |buzz| %&gt;
-  &lt;div class=&#34;sub_buzz&#34;&gt;
-    &lt;%= render buzz %&gt;
-  &lt;/div&gt;
-  &lt;%= link_to &#34;Show this buzz&#34;, buzz %&gt;
-  &lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: buzz.buzzs.build, parent: buzz} %&gt;
-&lt;% end %&gt;
-
-
-&lt;div&gt;
-  &lt;%= link_to &#34;Edit this buzz&#34;, edit_buzz_path(@buzz) %&gt; |
-  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
-
-  &lt;%= button_to &#34;Destroy this buzz&#34;, @buzz, method: :delete %&gt;
-&lt;/div&gt;
-
-&lt;%# create form for child buzz %&gt;
-&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz.buzzs.build, parent: @buzz} %&gt;
-</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;%# views/buzzs/_buzz.html.erb %&gt;
-&lt;div id=&#34;&lt;%= dom_id buzz %&gt;&#34;&gt;
-  &lt;% if buzz.parent_id == nil %&gt;
-    &lt;p&gt;
-      &lt;strong&gt;Content:&lt;/strong&gt;
-      &lt;%= buzz.content %&gt;
-    &lt;/p&gt;
-
-    &lt;%= button_to like_buzz_path(buzz), method: :put do %&gt;
-	    &lt;%= buzz.get_likes.size %&gt;
-    &lt;% end %&gt;
-
-    &lt;%= button_to dislike_buzz_path(buzz), method: :put do %&gt;
-	    &lt;%= buzz.get_dislikes.size %&gt;
-    &lt;% end %&gt;
-  
-  &lt;% else %&gt;
-    &lt;p&gt;
-      &lt;strong&gt;Reply:&lt;/strong&gt;
-      &lt;%= buzz.content %&gt;
-    &lt;/p&gt;
-  &lt;% end %&gt;
-&lt;/div&gt;
-</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/_form.html.erb 用來創建新 buzz的 form --&gt;
-
-&lt;%= form_with(model: buzz) do |form| %&gt;
-  &lt;% if buzz.errors.any? %&gt;
-    &lt;div style=&#34;color: red&#34;&gt;
-      &lt;h2&gt;&lt;%= pluralize(buzz.errors.count, &#34;error&#34;) %&gt; prohibited this buzz from being saved:&lt;/h2&gt;
-
-      &lt;ul&gt;
-        &lt;% buzz.errors.each do |error| %&gt;
-          &lt;li&gt;&lt;%= error.full_message %&gt;&lt;/li&gt;
-        &lt;% end %&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;% end %&gt;
-
-  &lt;div&gt;
-    &lt;%= form.label &#34;content&#34;, style: &#34;display: block&#34; %&gt;
-    &lt;%= form.text_field :content %&gt;
-  &lt;/div&gt;
-  &lt;% if !parent.nil? %&gt;
-    &lt;input type=&#34;hidden&#34; name=&#34;buzz[parent_id]&#34; value= &#34;&lt;%= parent.id %&gt;&#34;&gt;
-  &lt;% end %&gt;
-  &lt;div&gt;
-    &lt;%= form.submit &#34;Create&#34;%&gt;
-  &lt;/div&gt;
-&lt;% end %&gt;
-</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/new.html.erb --&gt;
-
-&lt;h1&gt;New buzz&lt;/h1&gt;
-&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: nil} %&gt;
-&lt;br&gt;
-
-&lt;div&gt;
-  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
-&lt;/div&gt;
-</code></pre><pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;!-- views/buzzs/edit.html.erb --&gt;
-&lt;h1&gt;Editing buzz&lt;/h1&gt;
-
-&lt;%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: @buzz.parent} %&gt;
-
-&lt;br&gt;
-
-&lt;div&gt;
-  &lt;%= link_to &#34;Show this buzz&#34;, @buzz %&gt; |
-  &lt;%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
-&lt;/div&gt;
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# 展示首頁的buzzs(沒有 parent_id 的 buzzs)%&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# 檔案：views/buzzs/index.html.erb %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;Buzzs&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;buzzs&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% @buzzs.where(parent_id: nil).each do |buzz| %&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= render buzz %&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Show this buzz&#34;, buzz %&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;New buzz&#34;, new_buzz_path %&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form %&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# 檔案：views/buzzs/show.heml.erb %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= render @buzz %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# render reply buzz %&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>% @buzz.buzzs.each do |buzz| %&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sub_buzz&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= render buzz %&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Show this buzz&#34;, buzz %&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= render partial: &#39;buzzs/form&#39;, locals: {buzz: buzz.buzzs.build, parent: buzz} %&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Edit this buzz&#34;, edit_buzz_path(@buzz) %&gt; |
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= button_to &#34;Destroy this buzz&#34;, @buzz, method: :delete %&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# create form for child buzz %&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz.buzzs.build, parent: @buzz} %&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%# views/buzzs/_buzz.html.erb %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;%= dom_id buzz %&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% if buzz.parent_id == nil %&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">strong</span>&gt;Content:&lt;/<span style="color:#f92672">strong</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>%= buzz.content %&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= button_to like_buzz_path(buzz), method: :put do %&gt;
+</span></span><span style="display:flex;"><span>	    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= buzz.get_likes.size %&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= button_to dislike_buzz_path(buzz), method: :put do %&gt;
+</span></span><span style="display:flex;"><span>	    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= buzz.get_dislikes.size %&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% else %&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">strong</span>&gt;Reply:&lt;/<span style="color:#f92672">strong</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>%= buzz.content %&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- views/buzzs/_form.html.erb 用來創建新 buzz的 form --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= form_with(model: buzz) do |form| %&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% if buzz.errors.any? %&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color: red&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h2</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= pluralize(buzz.errors.count, &#34;error&#34;) %&gt; prohibited this buzz from being saved:&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% buzz.errors.each do |error| %&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= error.full_message %&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= form.label &#34;content&#34;, style: &#34;display: block&#34; %&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= form.text_field :content %&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% if !parent.nil? %&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;buzz[parent_id]&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;%= parent.id %&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&lt;</span>%= form.submit &#34;Create&#34;%&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>% end %&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- views/buzzs/new.html.erb --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;New buzz&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: nil} %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- views/buzzs/edit.html.erb --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;Editing buzz&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%= render partial: &#39;buzzs/form&#39;, locals: {buzz: @buzz, parent: @buzz.parent} %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Show this buzz&#34;, @buzz %&gt; |
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span>%= link_to &#34;Back to buzzs&#34;, buzzs_path %&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><hr>
 <p>今天的內容就分享到這邊啦！   <br>
 下一篇文章來介紹簡單的 debug 方法<br>
 還有 rails console 的用法    <br>
