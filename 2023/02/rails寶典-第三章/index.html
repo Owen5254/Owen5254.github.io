@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境\n那事不宜遲 GoGo !\n✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key\nprimary_key and foreign_key\nprimary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key\nforeign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key\n關聯的型別： Rails models 有六種型別的關聯:\nbelongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.",
+  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !\n那事不宜遲 GoGo !\n✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key\nprimary_key and foreign_key\nprimary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key\nforeign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key\n關聯的型別： Rails models 有六種型別的關聯:",
   "keywords": []
 }
 
@@ -43,46 +43,42 @@
 <meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="羽 Yu">
 <meta name="keywords" content="">
-<meta name="description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
+<meta name="description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
 foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
-關聯的型別： Rails models 有六種型別的關聯:
-belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
+關聯的型別： Rails models 有六種型別的關聯:">
 
 
-<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
 foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
-關聯的型別： Rails models 有六種型別的關聯:
-belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
+關聯的型別： Rails models 有六種型別的關聯:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rails寶典 第三章">
 <meta name="twitter:title" content="Rails寶典 第三章">
 <meta property="og:url" content="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 <meta property="twitter:url" content="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0/">
 <meta property="og:site_name" content="Yu 的 Blog">
-<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
 foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
-關聯的型別： Rails models 有六種型別的關聯:
-belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
-<meta name="twitter:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
+關聯的型別： Rails models 有六種型別的關聯:">
+<meta name="twitter:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
 foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
-關聯的型別： Rails models 有六種型別的關聯:
-belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.">
+關聯的型別： Rails models 有六種型別的關聯:">
 <meta property="og:locale" content="zh-tw">
 
   
@@ -299,8 +295,7 @@ belongs_to has_one has_many has_many :through has_one :through has_and_belongs_t
 <p>嗨囉！大家好啊！   <br>
 今天的這篇文章會跟大家分享models的關聯 <br>
 寫完才發現篇幅有些大   <br>
-所以下一章再來介紹網站安全認證  <br>
-還有Rails的環境<br>
+所以下一章再來介紹 Devise 吧 !<br>
 那事不宜遲 GoGo !</p>
 <h3 id="-models表格關聯">✨ models表格關聯</h3>
 <h4 id="primary_key-和-foreign_key-">primary_key 和 foreign_key :</h4>
@@ -516,8 +511,7 @@ primary_key and foreign_key</p>
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
 </span></span></code></pre></div><hr>
 <p>今天的內容就分享到這邊啦！   <br>
-下一篇文章來介紹簡單的 debug 方法<br>
-還有 rails console 的用法    <br>
+下一篇文章來介紹非常厲害的 Devise       <br>
 那我們下篇文章見啦！！！☺️</p>
 
               

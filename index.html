@@ -311,14 +311,13 @@ Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /event
     </div>
     <div class="postShorten-excerpt">
       
-        ♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹網站安全認證 還有Rails的環境
+        ♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
 primary_key and foreign_key
 primary key: primary key 簡單來說就是一筆資料在一個表格中的地址 他們被用來辨識每筆資料 需要注意的是他可以是多個欄位的 舉例來說像下面這格表格： 而在 rails 中 就算你不寫 在生出每一個表格的時候 他也預設會幫你做出一個 id 的欄位 並用 id 號碼作為 primary key
 foreign key: foreign key 是用來做不同表格之間的關聯 Rails的慣例是「要被對到的那個 Model 的名字」加上 _id 在一張表格中 可以跟很多表格有關聯性的欄位 因此很常 foreign key 不只有一個 當然也不一定要是 primary key
 關聯的型別： Rails models 有六種型別的關聯:
-belongs_to has_one has_many has_many :through has_one :through has_and_belongs_to_many 1.
       
       <p>
         
@@ -427,6 +426,64 @@ belongs_to has_one has_many has_many :through has_one :through has_and_belongs_t
         🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
 Model 跟 Model 相關的檔案都放在 app/models 目錄裡
 View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡
+      
+      <p>
+        
+          <a href="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="postShorten-excerpt_link link" aria-label="打開帖子: Rails寶典 第一章">繼續閱讀</a>
+        
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title">
+      
+        <a class="link-unstyled" href="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/" aria-label="打開帖子: Rails寶典 第一章">
+      
+          Rails寶典 第一章
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-01-12T17:09:21&#43;08:00">
+        
+  一月 12, 2023
+
+      </time>
+    
+    
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt">
+      
+        ♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
+✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
+☘️ 安裝 Devise： gem &#39;devise&#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
+rails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址
+config.action_mailer.default_url_options = { :host =&gt; &#39;localhost:3000&#39; } 輸入 rails g devise user產生 User model 及 Migration
+rails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下
+rails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!
       
       <p>
         

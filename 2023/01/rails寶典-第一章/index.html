@@ -32,7 +32,7 @@
     }
     
   },
-  "description": "🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb\nModel 跟 Model 相關的檔案都放在 app/models 目錄裡\nView 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡",
+  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!\n✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：\n☘️ 安裝 Devise： gem \u0026#39;devise\u0026#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔\nrails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址\nconfig.action_mailer.default_url_options = { :host =\u0026gt; \u0026#39;localhost:3000\u0026#39; } 輸入 rails g devise user產生 User model 及 Migration\nrails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下\nrails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!",
   "keywords": []
 }
 
@@ -43,26 +43,42 @@
 <meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="羽 Yu">
 <meta name="keywords" content="">
-<meta name="description" content="🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
-Model 跟 Model 相關的檔案都放在 app/models 目錄裡
-View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡">
+<meta name="description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
+✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
+☘️ 安裝 Devise： gem &#39;devise&#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
+rails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址
+config.action_mailer.default_url_options = { :host =&gt; &#39;localhost:3000&#39; } 輸入 rails g devise user產生 User model 及 Migration
+rails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下
+rails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!">
 
 
-<meta property="og:description" content="🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
-Model 跟 Model 相關的檔案都放在 app/models 目錄裡
-View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡">
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
+✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
+☘️ 安裝 Devise： gem &#39;devise&#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
+rails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址
+config.action_mailer.default_url_options = { :host =&gt; &#39;localhost:3000&#39; } 輸入 rails g devise user產生 User model 及 Migration
+rails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下
+rails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rails寶典 第一章">
 <meta name="twitter:title" content="Rails寶典 第一章">
 <meta property="og:url" content="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/">
 <meta property="twitter:url" content="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/">
 <meta property="og:site_name" content="Yu 的 Blog">
-<meta property="og:description" content="🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
-Model 跟 Model 相關的檔案都放在 app/models 目錄裡
-View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡">
-<meta name="twitter:description" content="🔥 Ruby on Rails 🔥 * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ Model View Controller : 這是最重要的概念了 整個Rails專案是採用MVC(Model View Controller)所設計的 這裡借用一張圖來說明關係 使用者輸入網址 第一關會遇到的是Route (config/routes.rb） Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事 接著可能會call Model請它幫忙查資料 Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言 來和資料庫溝通 Model 跟資料庫取得你想要的資料 Model 把這包資料交回 Controller/Action 手上 之後controller 會跟對應的View借畫面 Controller/action 把資料跟View的畫面組合 最後呈現給使用者看 Controller Controller 就是放在專案的 app/controllers 目錄裡 如果類別的名稱叫做 PostsController 檔案的名字就會是 posts_controller.rb
-Model 跟 Model 相關的檔案都放在 app/models 目錄裡
-View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/posts 目錄裡">
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
+✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
+☘️ 安裝 Devise： gem &#39;devise&#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
+rails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址
+config.action_mailer.default_url_options = { :host =&gt; &#39;localhost:3000&#39; } 輸入 rails g devise user產生 User model 及 Migration
+rails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下
+rails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!">
+<meta name="twitter:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
+✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
+☘️ 安裝 Devise： gem &#39;devise&#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
+rails g devise:install 編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址
+config.action_mailer.default_url_options = { :host =&gt; &#39;localhost:3000&#39; } 輸入 rails g devise user產生 User model 及 Migration
+rails g devise user 輸入 rails generate devise:views產生HTML樣板 放在app/views/devise 目錄下
+rails g devise:views ☘️ Devise 使用方法： 在需要登入的 controller 加上before_action :authenticate_user!">
 <meta property="og:locale" content="zh-tw">
 
   
@@ -274,119 +290,53 @@ View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/post
           
           <div class="post-content markdown">
             <div class="main-content-wrap">
-              <h2 id="-ruby-on-rails-">🔥 Ruby on Rails 🔥</h2>
+              <h2 id="-ruby-on-rails">♦️ Ruby on Rails</h2>
 <p><code>* 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ </code></p>
-<h3 id="model-view-controller-">Model View Controller :</h3>
-<p>這是最重要的概念了 <br>
-整個Rails專案是採用MVC(Model View Controller)所設計的  <br>
-這裡借用一張圖來說明關係
-<img src="https://Owen5254.github.io/images/Ex1.png" alt="Example"></p>
-<ol>
-<li>使用者輸入網址 第一關會遇到的是Route (config/routes.rb）</li>
-<li>Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action</li>
-<li>Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事</li>
-<li>接著可能會call Model請它幫忙查資料</li>
-<li>Model 本身並不是資料庫 ! 但它可以會自己轉成資料庫看得懂的資料庫查詢語言
-來和資料庫溝通</li>
-<li>Model 跟資料庫取得你想要的資料</li>
-<li>Model 把這包資料交回 Controller/Action 手上</li>
-<li>之後controller 會跟對應的View借畫面</li>
-<li>Controller/action 把資料跟View的畫面組合 最後呈現給使用者看</li>
-</ol>
-<h5 id="controller">Controller</h5>
-<p>Controller 就是放在專案的 app/controllers 目錄裡   <br>
-如果類別的名稱叫做 PostsController   <br>
-檔案的名字就會是 posts_controller.rb</p>
-<h5 id="model">Model</h5>
-<p>跟 Model 相關的檔案都放在 app/models 目錄裡</p>
-<p><img src="https://Owen5254.github.io/images/Model.png" alt="Example"></p>
-<h5 id="view">View</h5>
-<p>舉例來說 跟 PostsController 相關的 View  <br>
-就會放在 app/views/posts 目錄裡<br>
-如果執行的是 PostsController 的 index Action   <br>
-預設會去找 app/views/posts/index.html.erb 這個檔案   <br>
-最後面的 erb 是 Embedded Ruby 的縮寫   <br>
-表示這個檔案會由 Ruby 標準函式庫中的 ERB 樣版引擎進行解讀</p>
-<h5 id="route-警告內容非常多">Route （警告：內容非常多）</h5>
-<p>Route的檔案為 config/routes.rb   <br>
-舉個例子 : <a href="http://rubyonrails.com/posts/123">http://rubyonrails.com/posts/123</a><br>
-假設 routes.rb :</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>application<span style="color:#f92672">.</span>routes<span style="color:#f92672">.</span>draw <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>  get <span style="color:#e6db74">&#34;/posts&#34;</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">&#34;posts#index&#34;</span>
-</span></span><span style="display:flex;"><span>  get <span style="color:#e6db74">&#34;/posts/:id&#34;</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">&#34;posts#show&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><p>當使用者輸入 /posts 這個網址 <br>
-它會交由 posts#index 來處理 (意思是 PostsController 上的 index 方法)     <br>
-同理 當使用者輸入 /posts/123 這個網址之後   <br>
-它會轉由 PostsController 上的 show 方法  <br>
-並且把 123 當做參數（:id）傳給 Controller</p>
-<pre tabindex="0"><code>$ rails routes
-</code></pre><p>終端機底下執行指令 可以看目前所有的路徑</p>
-<p>❗️<strong>注意</strong>：如果是放在專案的 public 目錄裡的檔案是不用經過 Route 的</p>
-<p>✨ <strong>首頁網網址設定</strong>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>root <span style="color:#e6db74">&#34;welcome#index&#34;</span>
-</span></span></code></pre></div><p>☘️ <strong>轉址</strong> :</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/users&#39;</span>, <span style="color:#e6db74">to</span>: redirect(<span style="color:#e6db74">&#39;/accounts&#39;</span>)
-</span></span></code></pre></div><p>這樣一來就可以把 /users 轉往 /accounts 了</p>
-<p>⭐️ <strong>RESTful 設計</strong>：  <br>
-Representational State Transfer  <br>
-導入 REST 的設計 可讓網址變得更直觀<br>
-而且也幫開發人員訂了一套網址設計的慣例
-當你對某個網址使用 POST 方法存取表示是新增資料 <br>
-當使用 PUT 或 PATCH 方法表示是更新資料 <br>
-使用 DELETE 方法則是表示刪除資料</p>
-<p>符合RESTful 的網址設計 <br>
-Rails 提供的 resources 方法</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>application<span style="color:#f92672">.</span>routes<span style="color:#f92672">.</span>draw <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>  resources <span style="color:#e6db74">:users</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><p><img src="https://Owen5254.github.io/images/Ex2.png" alt="Example"></p>
-<p>✨ <strong>prefix</strong>
-在 rails routes 指令所秀出來的各項資訊中，有一欄叫 Prefix  <br>
-它在後面接上 _path 或 _url 後可以變成「產生相對應的路徑或網址」的 View Helper</p>
-<pre tabindex="0"><code>products + path     = products_path         =&gt; /products
-new_product + path  = new_product_path      =&gt; /products/new
-edit_product + path = edit_product_path(2)  =&gt; /products/2/edit
-</code></pre><pre tabindex="0"><code>products + url     = products_url         =&gt; http://kaochenlong.com/products
-new_product + url  = new_product_url      =&gt; http://kaochenlong.com/products/new
-edit_product + url = edit_product_url(2)  =&gt; http://kaochenlong.com/products/2/edit
-</code></pre><p>✨ <strong>Resources 內建路徑不夠用&hellip;</strong></p>
-<ol>
-<li>使用 collection (不帶有 :id)：
-例如我用resources產生order的路徑 <br>
-但我想再加一個路徑 GET /orders/cancelled
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>application<span style="color:#f92672">.</span>routes<span style="color:#f92672">.</span>draw <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>  resources <span style="color:#e6db74">:orders</span> <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>    collection <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>      get <span style="color:#e6db74">:cancelled</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+<p>哈囉！   <br>
+今天跟大家分享Rails中很強大的套件就是 Devise！ <br>
+那我們就開始吧！GoGo!</p>
+<h3 id="-devise">✨ Devise：</h3>
+<p>Devise 是 Rails 中一套最有名的使用者認證套件   <br>
+他可以幫你快速產生一套完整的使用者註冊登入介面   <br>
+以下是使用方法：</p>
+<h5 id="-安裝-devise">☘️ 安裝 Devise：</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>gem <span style="color:#e6db74">&#39;devise&#39;</span>
+</span></span></code></pre></div><p>然後記得 bundle install 安裝套件 <br>
+之後輸入rails g devise:install產生devise設定檔</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>rails g <span style="color:#e6db74">devise</span>:install
+</span></span></code></pre></div><p>編輯 config/environments/development.rb 和 production.rb 加入寄信時預設的網站網址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>config<span style="color:#f92672">.</span>action_mailer<span style="color:#f92672">.</span>default_url_options <span style="color:#f92672">=</span> { <span style="color:#e6db74">:host</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;localhost:3000&#39;</span> }
+</span></span></code></pre></div><p>輸入 rails g devise user產生 User model 及 Migration</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>rails g devise user
+</span></span></code></pre></div><p>輸入 rails generate devise:views產生HTML樣板   <br>
+放在app/views/devise 目錄下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>rails g <span style="color:#e6db74">devise</span>:views
+</span></span></code></pre></div><h5 id="-devise-使用方法">☘️ Devise 使用方法：</h5>
+<p>在需要登入的 controller 加上before_action :authenticate_user!    <br>
+Layout 中加上登入登出選單</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-h" data-lang="h"><span style="display:flex;"><span><span style="color:#f92672">&lt;%</span> <span style="color:#66d9ef">if</span> current_user <span style="color:#f92672">%&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;%=</span> <span style="color:#a6e22e">link_to</span>(<span style="color:#960050;background-color:#1e0010">&#39;登出&#39;</span>, destroy_user_session_path:method <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">:</span>delete) <span style="color:#f92672">%&gt;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;%=</span> <span style="color:#a6e22e">link_to</span>(<span style="color:#960050;background-color:#1e0010">&#39;修改密碼&#39;</span>, <span style="color:#a6e22e">edit_registration_path</span>(<span style="color:#f92672">:</span>user)) <span style="color:#f92672">%&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;%</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">%&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;%=</span> <span style="color:#a6e22e">link_to</span>(<span style="color:#960050;background-color:#1e0010">&#39;註冊&#39;</span>, <span style="color:#a6e22e">new_registration_path</span>(<span style="color:#f92672">:</span>user)) <span style="color:#f92672">%&gt;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;%=</span> <span style="color:#a6e22e">link_to</span>(<span style="color:#960050;background-color:#1e0010">&#39;登入&#39;</span>, <span style="color:#a6e22e">new_session_path</span>(<span style="color:#f92672">:</span>user)) <span style="color:#f92672">%&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;%</span> end <span style="color:#f92672">%&gt;</span>
+</span></span></code></pre></div><h5 id="-devise-自訂欄位">☘️ Devise 自訂欄位：</h5>
+<p>如果你想加一些新的欄位 <br>
+舉例來說我們要加 displayname 到 User Model:  <br>
+在 db/migrate/devise_create_users.rb</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeviseCreateUsers</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Migration</span><span style="color:#f92672">[</span><span style="color:#ae81ff">7</span><span style="color:#f92672">.</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">change</span>
+</span></span><span style="display:flex;"><span>      t<span style="color:#f92672">.</span>string <span style="color:#e6db74">:display_name</span>, <span style="color:#e6db74">null</span>: <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">default</span>: <span style="color:#e6db74">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div></li>
-<li>使用member(帶有:id):
-如果我想要以下路徑：
-<pre tabindex="0"><code># 確認 2 號訂單
-POST /orders/2/confirm
-
-# 取消 3 號訂單
-DELETE /orders/3/cancel
-</code></pre>跟 collection 有點類似，就是在 orders 這個 Resources 裡加上 member
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>application<span style="color:#f92672">.</span>routes<span style="color:#f92672">.</span>draw <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>  resources <span style="color:#e6db74">:orders</span> <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>    member <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>      post <span style="color:#e6db74">:confirm</span>
-</span></span><span style="display:flex;"><span>      delete <span style="color:#e6db74">:cancel</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div>這樣一來就會產生下圖新的路徑： <br>
-<img src="https://Owen5254.github.io/images/Ex3.png" alt="Example"></li>
-</ol>
+</span></span></code></pre></div><p>然後執行 rails db:migrate  <br>
+我們可以在 db/migrate/schema.rb 內查看所有的 table 資訊</p>
 <hr>
-<p>第一篇文章就先到這邊結束吧
-歡迎繼續往下一章閱讀喔！</p>
-<p><strong>參考資料:</strong>
-<a href="https://railsbook.tw/chapters/11-routes">為你自己學 Ruby on Rails</a></p>
+<p>Devise 真的是 Rails內非常厲害的套件    <br>
+如果想更佳熟用它可以參考<a href="https://github.com/heartcombo/devise">官方Github</a>!    <br>
+那今天就介紹到這邊啦！     <br>
+下一章主題來介紹其他套件好了 歡迎繼續收看喔！</p>
 
               
 
@@ -416,7 +366,7 @@ DELETE /orders/3/cancel
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-tooltip="Ruby手冊 第一章" aria-label="下一篇: Ruby手冊 第一章">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-tooltip="Rails寶典 第一章" aria-label="下一篇: Rails寶典 第一章">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -523,7 +473,7 @@ DELETE /orders/3/cancel
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/01/ruby%E6%89%8B%E5%86%8A-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-tooltip="Ruby手冊 第一章" aria-label="下一篇: Ruby手冊 第一章">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-tooltip="Rails寶典 第一章" aria-label="下一篇: Rails寶典 第一章">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
