@@ -8,11 +8,11 @@
     <language>zh-tw</language>
     <lastBuildDate>Wed, 08 Feb 2023 02:16:21 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Rails寶典 第二章</title>
-      <link>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</link>
+      <title>Rails寶典 第二章 MVC</title>
+      <link>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-mvc/</link>
       <pubDate>Wed, 08 Feb 2023 02:16:21 +0800</pubDate>
       
-      <guid>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</guid>
+      <guid>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-mvc/</guid>
       <description>♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
 那我們就開始啦! GoGo!
 ✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
@@ -23,11 +23,11 @@ Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /event
     </item>
     
     <item>
-      <title>Rails寶典 第三章</title>
-      <link>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0/</link>
+      <title>Rails寶典 第三章 Models Relation</title>
+      <link>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0-models-relation/</link>
       <pubDate>Wed, 08 Feb 2023 02:16:21 +0800</pubDate>
       
-      <guid>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0/</guid>
+      <guid>https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0-models-relation/</guid>
       <description>♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 嗨囉！大家好啊！ 今天的這篇文章會跟大家分享models的關聯 寫完才發現篇幅有些大 所以下一章再來介紹 Devise 吧 !
 那事不宜遲 GoGo !
 ✨ models表格關聯 primary_key 和 foreign_key : 再介紹有哪些關聯之前 我們先來介紹兩個重要的key
@@ -60,11 +60,11 @@ View 舉例來說 跟 PostsController 相關的 View 就會放在 app/views/post
     </item>
     
     <item>
-      <title>Rails寶典 第一章</title>
-      <link>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</link>
+      <title>Rails寶典 第四章</title>
+      <link>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E5%9B%9B%E7%AB%A0/</link>
       <pubDate>Thu, 12 Jan 2023 17:09:21 +0800</pubDate>
       
-      <guid>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%80%E7%AB%A0/</guid>
+      <guid>https://Owen5254.github.io/2023/01/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E5%9B%9B%E7%AB%A0/</guid>
       <description>♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 哈囉！ 今天跟大家分享Rails中很強大的套件就是 Devise！ 那我們就開始吧！GoGo!
 ✨ Devise： Devise 是 Rails 中一套最有名的使用者認證套件 他可以幫你快速產生一套完整的使用者註冊登入介面 以下是使用方法：
 ☘️ 安裝 Devise： gem &amp;#39;devise&amp;#39; 然後記得 bundle install 安裝套件 之後輸入rails g devise:install產生devise設定檔
