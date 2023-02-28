@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Rails寶典 第二章 RESTful API",
+  
+  "datePublished": "2023-02-08T02:16:21+08:00",
+  "dateModified": "2023-02-08T02:16:21+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "羽 Yu",
+    
+    "image": "https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/Owen5254.github.io\/2023\/02\/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yu 的 Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b"
+    }
+    
+  },
+  "description": "♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!\n那我們就開始啦! GoGo!\n✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構\nREST有主要有兩個核心精神：\n使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。\n🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions\nHelper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="羽 Yu">
+<meta name="keywords" content="">
+<meta name="description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
+那我們就開始啦! GoGo!
+✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
+REST有主要有兩個核心精神：
+使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。
+🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions
+Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經">
+
+
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
+那我們就開始啦! GoGo!
+✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
+REST有主要有兩個核心精神：
+使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。
+🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions
+Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails寶典 第二章 RESTful API">
+<meta name="twitter:title" content="Rails寶典 第二章 RESTful API">
+<meta property="og:url" content="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/">
+<meta property="twitter:url" content="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/">
+<meta property="og:site_name" content="Yu 的 Blog">
+<meta property="og:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
+那我們就開始啦! GoGo!
+✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
+REST有主要有兩個核心精神：
+使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。
+🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions
+Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經">
+<meta name="twitter:description" content="♦️ Ruby on Rails * 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ 上一章節介紹了Rails基本的MVC架構 在這一章節我會介紹RESTful API 以及一些Rails專案中常用的命令 還有如何抓蟲子(debug)!
+那我們就開始啦! GoGo!
+✨ RESTful API: 什麼是 REST ? Representational State Transfer (REST) 是一種軟體架構 它對 API 的運作方式施加了條件 簡單來說就是大家一起規定製作API的標準架構
+REST有主要有兩個核心精神：
+使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource 同一個Resource則可以有不同的Representations格式變化。 RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions 將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。
+🌰 舉個栗子： resources :events 如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions
+Helper GET POST PATCH/PUT DELETE event_path(@event) /events/1 show action /events/1 update action /events/1 destroy action events_path /events index action /events create action edit_event_path(@event) /events/1/edit edit action new_event_path /events/new new action 詳細資料可以參考這個喔：Rails實戰聖經">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2023-02-08T02:16:21">
+  
+  
+    <meta property="article:modified_time" content="2023-02-08T02:16:21">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="Ruby on Rails">
+    
+      <meta property="article:tag" content="coding">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=640">
+
+
+
+
+
+
+    <title>Rails寶典 第二章 RESTful API</title>
+
+    <link rel="icon" href="https://Owen5254.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://Owen5254.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://Owen5254.github.io/" aria-label="去首頁">Yu 的 Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://Owen5254.github.io/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=90" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://Owen5254.github.io/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=110" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">羽 Yu</h4>
+        
+          <h5 class="sidebar-profile-bio">寫程式最迷人的地方就是當你想要光就能有光</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Owen5254" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Atom</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Rails寶典 第二章 RESTful API
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-02-08T02:16:21&#43;08:00">
+        
+  二月 8, 2023
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h2 id="-ruby-on-rails">♦️ Ruby on Rails</h2>
+<p><code>* 前情提要：我把我所學都埋藏在這裡了 去找吧！希望能幫助到新手！ </code></p>
+<p>上一章節介紹了Rails基本的MVC架構  <br>
+在這一章節我會介紹RESTful API  <br>
+以及一些Rails專案中常用的命令  <br>
+還有如何抓蟲子(debug)!<br>
+那我們就開始啦! GoGo!</p>
+<h3 id="-restful-api">✨ RESTful API:</h3>
+<h4 id="什麼是-rest-">什麼是 REST ?</h4>
+<p>Representational State Transfer (REST) 是一種軟體架構  <br>
+它對 API 的運作方式施加了條件  <br>
+簡單來說就是大家一起規定製作API的標準架構<br>
+REST有主要有兩個核心精神：</p>
+<ol>
+<li>使用Resource來當做識別的資源，也就是使用一個URL網址來代表一個Resource</li>
+<li>同一個Resource則可以有不同的Representations格式變化。</li>
+</ol>
+<p>RESTful帶給Rails最大的好處是：它幫助我們用一種比較標準化的方式來命名跟組織Controllers和Actions   <br>
+將RESTful帶入Rails路由系統的點子，出自它對應了HTTP動詞POST、GET、PATCH/PUT、DELETE到資料的新增、讀取、更新、刪除等四項操作。</p>
+<h4 id="-舉個栗子">🌰 舉個栗子：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>resources <span style="color:#e6db74">:events</span>
+</span></span></code></pre></div><p>如此就會自動建立四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions</p>
+<table>
+<thead>
+<tr>
+<th>Helper</th>
+<th>GET</th>
+<th>POST</th>
+<th>PATCH/PUT</th>
+<th>DELETE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_path(@event)</td>
+<td>/events/1   show action</td>
+<td></td>
+<td>/events/1  update action</td>
+<td>/events/1 destroy action</td>
+</tr>
+<tr>
+<td>events_path</td>
+<td>/events index action</td>
+<td>/events create action</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>edit_event_path(@event)</td>
+<td>/events/1/edit edit action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>new_event_path</td>
+<td>/events/new new action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>詳細資料可以參考這個喔：<a href="https://ihower.tw/rails/restful.html">Rails實戰聖經</a></p>
+<h3 id="-常用的命令">✨ 常用的命令：</h3>
+<p>介紹完REST後 接著我們來看一下Rails中常用的指令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># 關於專案常用創建指令</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#66d9ef">new</span> <span style="color:#75715e">#新建rails應用程式</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails s <span style="color:#75715e">#啟動網路server</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails g <span style="color:#75715e">#使用模版來generate很多東西 例如 rails g controller</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails console <span style="color:#75715e">#可以從命令列跟 Rails互動 背後用的是 IRB</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails destroy <span style="color:#75715e">#generate 的反操作</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bundle install <span style="color:#75715e">#據專案中的 Gemfile 去讀取專案有哪些 Gem 並安裝</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails generate scaffold <span style="color:#66d9ef">User</span> name<span style="color:#e6db74">:string</span> <span style="color:#e6db74">email</span>:string
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 快速創建一個名為 User 的基礎架構</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># 關於資料庫遷移 </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">db</span>:migrate <span style="color:#75715e">#進行資料庫遷移</span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">db</span>:migrate <span style="color:#66d9ef">VERSION</span><span style="color:#f92672">=</span><span style="color:#ae81ff">20080906120000</span> <span style="color:#75715e">#指定版本遷移</span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">db</span>:rollback <span style="color:#75715e">#退回上次遷移</span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">db</span>:reset <span style="color:#75715e">#將資料庫移除，再重新建立</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># 其他</span>
+</span></span><span style="display:flex;"><span>rails db <span style="color:#75715e"># 知道正在使用的資料庫</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails about <span style="color:#75715e"># 列出整個 Rails 框架與環境的版本</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">assets</span>:clean <span style="color:#75715e"># 移除過時已編譯過的 Assets</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rails <span style="color:#e6db74">db</span>:create <span style="color:#75715e"># 根據 config/database.yml 給目前的環境建立資料庫</span>
+</span></span></code></pre></div><p>更多資料歡迎參閱：<a href="https://rails.ruby.tw/command_line.html">Rails命令列</a></p>
+<h3 id="-rails-debug">✨ Rails Debug</h3>
+<p>參考<a href="https://rails.ruby.tw/debugging_rails_applications.html">官方Doc</a></p>
+<hr>
+<p>今天的文章就先到這邊啦！   <br>
+之後第三章來寫寫models關聯性<br>
+還有 Devise！</p>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://Owen5254.github.io/tags/ruby-on-rails/">Ruby on Rails</a>
+
+  <a class="tag tag--primary tag--small" href="https://Owen5254.github.io/tags/coding/">coding</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%94%E7%AB%A0-form/" data-tooltip="Rails寶典 第五章 form" aria-label="下一篇: Rails寶典 第五章 form">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0-models-relation/" data-tooltip="Rails寶典 第三章 Models Relation" aria-label="上一篇: Rails寶典 第三章 Models Relation">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到頂部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/Owen5254.github.io\/2023\/02\/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api\/';
+        
+          this.page.identifier = '\/2023\/02\/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 羽 Yu. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%94%E7%AB%A0-form/" data-tooltip="Rails寶典 第五章 form" aria-label="下一篇: Rails寶典 第五章 form">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%B8%89%E7%AB%A0-models-relation/" data-tooltip="Rails寶典 第三章 Models Relation" aria-label="上一篇: Rails寶典 第三章 Models Relation">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%8C%E7%AB%A0-restful-api/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到頂部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FOwen5254.github.io%2F2023%2F02%2Frails%25E5%25AF%25B6%25E5%2585%25B8-%25E7%25AC%25AC%25E4%25BA%258C%25E7%25AB%25A0-restful-api%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FOwen5254.github.io%2F2023%2F02%2Frails%25E5%25AF%25B6%25E5%2585%25B8-%25E7%25AC%25AC%25E4%25BA%258C%25E7%25AB%25A0-restful-api%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FOwen5254.github.io%2F2023%2F02%2Frails%25E5%25AF%25B6%25E5%2585%25B8-%25E7%25AC%25AC%25E4%25BA%258C%25E7%25AB%25A0-restful-api%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=110" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">羽 Yu</h4>
+    
+      <div id="about-card-bio">寫程式最迷人的地方就是當你想要光就能有光</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        NTNU student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://Owen5254.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://Owen5254.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
