@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Redis1",
+  
+  "datePublished": "2023-03-04T22:10:41+08:00",
+  "dateModified": "2023-03-04T22:10:41+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "羽 Yu",
+    
+    "image": "https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/Owen5254.github.io\/2023\/03\/redis1\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yu 的 Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b"
+    }
+    
+  },
+  "description": "Redis 簡介： * 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ Visit the Redis website!\n⭐️ 什麼是 Redis: Remote Dictionary Server (Redis) 是一種開源（BSD 許可）內存數據結構存儲系統 Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能 Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據 Redis 也提供異步複製 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步\n✨ 異步複製 Asynchronous Replication:\n一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性 在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。\n⭐️ 開始使用 Redis: Install on macos: # Installation: brew install redis # test your Redis installation redis-server Starting and stopping Redis using launchd: brew services start redis # check the status brew services info redis # To stop the service, run: brew services stop redis 與 Redis 互動： Redis 執行後 可以試著叫出redis-cli:",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.108.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="羽 Yu">
+<meta name="keywords" content="">
+<meta name="description" content="Redis 簡介： * 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ Visit the Redis website!
+⭐️ 什麼是 Redis: Remote Dictionary Server (Redis) 是一種開源（BSD 許可）內存數據結構存儲系統 Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能 Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據 Redis 也提供異步複製 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步
+✨ 異步複製 Asynchronous Replication:
+一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性 在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。
+⭐️ 開始使用 Redis: Install on macos: # Installation: brew install redis # test your Redis installation redis-server Starting and stopping Redis using launchd: brew services start redis # check the status brew services info redis # To stop the service, run: brew services stop redis 與 Redis 互動： Redis 執行後 可以試著叫出redis-cli:">
+
+
+<meta property="og:description" content="Redis 簡介： * 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ Visit the Redis website!
+⭐️ 什麼是 Redis: Remote Dictionary Server (Redis) 是一種開源（BSD 許可）內存數據結構存儲系統 Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能 Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據 Redis 也提供異步複製 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步
+✨ 異步複製 Asynchronous Replication:
+一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性 在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。
+⭐️ 開始使用 Redis: Install on macos: # Installation: brew install redis # test your Redis installation redis-server Starting and stopping Redis using launchd: brew services start redis # check the status brew services info redis # To stop the service, run: brew services stop redis 與 Redis 互動： Redis 執行後 可以試著叫出redis-cli:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis1">
+<meta name="twitter:title" content="Redis1">
+<meta property="og:url" content="https://Owen5254.github.io/2023/03/redis1/">
+<meta property="twitter:url" content="https://Owen5254.github.io/2023/03/redis1/">
+<meta property="og:site_name" content="Yu 的 Blog">
+<meta property="og:description" content="Redis 簡介： * 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ Visit the Redis website!
+⭐️ 什麼是 Redis: Remote Dictionary Server (Redis) 是一種開源（BSD 許可）內存數據結構存儲系統 Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能 Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據 Redis 也提供異步複製 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步
+✨ 異步複製 Asynchronous Replication:
+一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性 在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。
+⭐️ 開始使用 Redis: Install on macos: # Installation: brew install redis # test your Redis installation redis-server Starting and stopping Redis using launchd: brew services start redis # check the status brew services info redis # To stop the service, run: brew services stop redis 與 Redis 互動： Redis 執行後 可以試著叫出redis-cli:">
+<meta name="twitter:description" content="Redis 簡介： * 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ Visit the Redis website!
+⭐️ 什麼是 Redis: Remote Dictionary Server (Redis) 是一種開源（BSD 許可）內存數據結構存儲系統 Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能 Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據 Redis 也提供異步複製 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步
+✨ 異步複製 Asynchronous Replication:
+一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性 在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。
+⭐️ 開始使用 Redis: Install on macos: # Installation: brew install redis # test your Redis installation redis-server Starting and stopping Redis using launchd: brew services start redis # check the status brew services info redis # To stop the service, run: brew services stop redis 與 Redis 互動： Redis 執行後 可以試著叫出redis-cli:">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2023-03-04T22:10:41">
+  
+  
+    <meta property="article:modified_time" content="2023-03-04T22:10:41">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="Redis">
+    
+      <meta property="article:tag" content="coding">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=640">
+
+
+
+
+
+
+    <title>Redis1</title>
+
+    <link rel="icon" href="https://Owen5254.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://Owen5254.github.io/2023/03/redis1/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://Owen5254.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://Owen5254.github.io/" aria-label="去首頁">Yu 的 Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://Owen5254.github.io/#about" aria-label="打開鏈接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=90" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://Owen5254.github.io/#about" aria-label="閱讀有關作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=110" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">羽 Yu</h4>
+        
+          <h5 class="sidebar-profile-bio">寫程式最迷人的地方就是當你想要光就能有光</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Owen5254" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://Owen5254.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Atom</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Redis1
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-03-04T22:10:41&#43;08:00">
+        
+  三月 4, 2023
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h2 id="redis-簡介">Redis 簡介：</h2>
+<p><code>* 前情提要：這是我第一次認識 Redis 感覺是一個很強大的東西 所以我想為他寫一些文章 介紹介紹這位朋友給大家！ </code></p>
+<p>Visit the <a href="https://redis.io/">Redis</a> website!</p>
+<hr>
+<h4 id="-什麼是-redis">⭐️ 什麼是 Redis:</h4>
+<p>Remote Dictionary Server (Redis) <br>
+是一種開源（BSD 許可）內存數據結構存儲系統     <br>
+Redis的特點是速度快、内存占用小、支持豐富的數據結構和多種擴展功能     <br>
+Redis 可以通過定期將數據集轉儲到磁盤 或通過將每個命令附加到基於磁盤的日誌來持久保存您的數據      <br>
+Redis 也提供<em>異步複製</em> 具有快速非阻塞同步和自動重新連接，並在網絡拆分時進行部分重新同步</p>
+<p><em>✨ 異步複製 Asynchronous Replication:</em><br>
+一種分佈式系統中常見的資料複製方式，它通過將資料從一個節點異步地複製到另一個節點，來實現資料的冗余和備份，以提高系統的可用性和容錯性   <br>
+在異步複製中，當主節點（源節點）接收到寫請求時，它會先將資料寫入本地存儲，並在後台異步地將資料複製到備份節點（目標節點）。複製的過程中可能會存在一定的延遲，即主節點已經完成寫操作，但備份節點尚未完成複製操作，因此如果主節點在此期間發生故障，那麼一部分資料可能會丟失。</p>
+<h4 id="-開始使用-redis">⭐️ 開始使用 Redis:</h4>
+<h5 id="install-on-macos">Install on macos:</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Installation:</span>
+</span></span><span style="display:flex;"><span>brew install redis
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># test your Redis installation</span>
+</span></span><span style="display:flex;"><span>redis<span style="color:#f92672">-</span>server
+</span></span></code></pre></div><h6 id="starting-and-stopping-redis-using-launchd">Starting and stopping Redis using launchd:</h6>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>brew services start redis
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># check the status</span>
+</span></span><span style="display:flex;"><span>brew services info redis
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># To stop the service, run:</span>
+</span></span><span style="display:flex;"><span>brew services stop redis
+</span></span></code></pre></div><h6 id="與-redis-互動">與 Redis 互動：</h6>
+<p>Redis 執行後 可以試著叫出redis-cli:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>redis<span style="color:#f92672">-</span>cli
+</span></span></code></pre></div><p>這樣就會打開一個 redis console !
+可以試試下面的命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>lpush demos redis<span style="color:#f92672">-</span>macOS<span style="color:#f92672">-</span>demo
+</span></span><span style="display:flex;"><span>rpop demos
+</span></span></code></pre></div><hr>
+<h4 id="-redis-數據類型">⭐️ Redis 數據類型:</h4>
+<p>這邊簡單帶過 Redis 的數據類型      <br>
+詳細可以參考<a href="https://redis.io/docs/data-types/tutorial/">官網</a></p>
+<h6 id="鑰匙key">✨鑰匙(Key):</h6>
+<p>Redis 密鑰是二進制安全的     <br>
+意味著您可以使用任何二進制序列作為密鑰   <br>
+從“foo”這樣的字符串到 JPEG 文件的內容</p>
+<h6 id="字符串string">✨字符串(String)：</h6>
+<p>使用SET和GET命令是我們設置和檢索字符串值的方式:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>set mykey somevalue
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>get mykey
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 得到 &#34;somevalue&#34;</span>
+</span></span></code></pre></div><p>另外我們也可以對字符串做增量：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>set counter <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>incr counter
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (integer) 101</span>
+</span></span></code></pre></div><p>INCR命令將字符串值解析為整數 <br>
+最後將得到的值設置為新值     <br>
+還有其他類似的命令，如 INCRBY、 DECR 和 DECRBY</p>
+<h6 id="更改和查詢密鑰">✨更改和查詢密鑰:</h6>
+<p>EXISTS命令返回 1 或 0 以指示給定鍵是否存在於數據庫中<br>
+而 DEL 是刪除鍵和關聯值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>set mykey hello
+</span></span><span style="display:flex;"><span>exists mykey
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (integer) 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> mykey
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (integer) 1</span>
+</span></span><span style="display:flex;"><span>exists mykey
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#(integer) 0</span>
+</span></span></code></pre></div><h6 id="密要過期">✨密要過期：</h6>
+<p>密鑰允許您為他設置時限 <br>
+也稱為 “ TTL ”  <br>
+當時間過去後 密鑰將自動銷毀  <br>
+<em>重要說明：</em></p>
+<ol>
+<li>可以使用秒或毫秒精度設置它們</li>
+<li>過期的信息被複製並保存在磁盤上，當您的 Redis 服務器保持停止時，時間也會繼續計算</li>
+</ol>
+<p>使用EXPIRE命令設置密鑰的過期時間：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>set key some<span style="color:#f92672">-</span>value
+</span></span><span style="display:flex;"><span>expire key <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5秒後 key便會消失</span>
+</span></span></code></pre></div>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://Owen5254.github.io/tags/redis/">Redis</a>
+
+  <a class="tag tag--primary tag--small" href="https://Owen5254.github.io/tags/coding/">coding</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%94%E7%AB%A0-form/" data-tooltip="Rails寶典 第五章 form" aria-label="上一篇: Rails寶典 第五章 form">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到頂部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/Owen5254.github.io\/2023\/03\/redis1\/';
+        
+          this.page.identifier = '\/2023\/03\/redis1\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 羽 Yu. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://Owen5254.github.io/2023/02/rails%E5%AF%B6%E5%85%B8-%E7%AC%AC%E4%BA%94%E7%AB%A0-form/" data-tooltip="Rails寶典 第五章 form" aria-label="上一篇: Rails寶典 第五章 form">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享這個帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://Owen5254.github.io/2023/03/redis1/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="發表評論">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到頂部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FOwen5254.github.io%2F2023%2F03%2Fredis1%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FOwen5254.github.io%2F2023%2F03%2Fredis1%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FOwen5254.github.io%2F2023%2F03%2Fredis1%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/7b9d86e762e3105d1efe334f519a950b?s=110" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">羽 Yu</h4>
+    
+      <div id="about-card-bio">寫程式最迷人的地方就是當你想要光就能有光</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        NTNU student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://Owen5254.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://Owen5254.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

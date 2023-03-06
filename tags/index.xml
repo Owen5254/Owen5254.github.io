@@ -6,13 +6,22 @@
     <description>Recent content in Tags on Yu 的 Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 28 Feb 2023 01:29:19 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 22:10:41 +0800</lastBuildDate><atom:link href="https://Owen5254.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>coding</title>
       <link>https://Owen5254.github.io/tags/coding/</link>
-      <pubDate>Tue, 28 Feb 2023 01:29:19 +0800</pubDate>
+      <pubDate>Sat, 04 Mar 2023 22:10:41 +0800</pubDate>
       
       <guid>https://Owen5254.github.io/tags/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://Owen5254.github.io/tags/redis/</link>
+      <pubDate>Sat, 04 Mar 2023 22:10:41 +0800</pubDate>
+      
+      <guid>https://Owen5254.github.io/tags/redis/</guid>
       <description></description>
     </item>
     
