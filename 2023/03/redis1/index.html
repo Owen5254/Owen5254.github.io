@@ -357,7 +357,43 @@ Redis 也提供<em>異步複製</em> 具有快速非阻塞同步和自動重新�
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>set key some<span style="color:#f92672">-</span>value
 </span></span><span style="display:flex;"><span>expire key <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 5秒後 key便會消失</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><hr>
+<h4 id="-保護-redis">⭐️ 保護 Redis:</h4>
+<p>默認情況下 Redis 綁定到所有接口且沒有身份驗證!   <br>
+可以使用以下步驟以提高 Redis 的安全性：</p>
+<ol>
+<li>確保 Redis 用於偵聽連接的端口被防火牆保護
+（ 默認情況下為 6379，如果您在集群模式下運行 Redis，則為 16379，對於 Sentinel 則為 26379 ）</li>
+<li>使用 bind 以確保 Redis 僅偵聽您正在使用的網絡接口
+例如 如果要讓 Redis 只監聽 127.0.0.1 对应的网络接口上的请求，可以在 Redis 配置文件中添加如下配置项：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>bind <span style="color:#ae81ff">127.0.0.1</span>
+</span></span></code></pre></div></li>
+<li>requirepass選項以添加額外的安全層 使客戶端需要使用AUTH命令進行身份驗證</li>
+<li>使用spiped或其他 SSL 隧道軟件來加密 Redis 服務器和 Redis 客戶端之間的流量</li>
+</ol>
+<hr>
+<h4 id="-在應用程序中使用-redis">⭐️ 在應用程序中使用 Redis:</h4>
+<p>要在應用程序中使用 Redis 我們需要安裝相關的 <a href="https://redis.io/resources/clients/">client</a>    <br>
+以 Ruby 舉例 我們可以使用 &lsquo;gem install redis&rsquo; 來安裝 <br>
+使用 Ruby 的簡短交互式示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>require <span style="color:#e6db74">&#39;rubygems&#39;</span>
+</span></span><span style="display:flex;"><span>require <span style="color:#e6db74">&#39;redis&#39;</span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#66d9ef">Redis</span><span style="color:#f92672">.</span>new
+</span></span><span style="display:flex;"><span>r<span style="color:#f92672">.</span>ping
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#=&gt; &#34;PONG&#34;</span>
+</span></span></code></pre></div><hr>
+<h4 id="-redis-持久化">⭐️ Redis 持久化：</h4>
+<p>簡單說明就是 如果我們希望數據庫在重啟後持久保存並重新加載  <br>
+要確保每次要強制執行數據集快照時手動調用 SAVE 命令   <br>
+否則就要使用<em>SHUTDOWN</em>命令關閉數據庫：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>redis<span style="color:#f92672">-</span>cli shutdown
+</span></span></code></pre></div><p>強烈建議閱讀<a href="https://redis.io/docs/management/persistence/">這篇</a>！</p>
+<hr>
+<p>OK, 那今天我們一起初次認識了 Redis !   <br>
+之後我們可以嘗試在專案中使用它啦！     <br>
+那麽我應該會為他寫第二天文章 就是關於實作的部分！  <br>
+歡迎閱讀喔！</p>
+
               
 
 
